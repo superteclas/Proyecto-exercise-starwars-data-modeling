@@ -36,15 +36,12 @@ class Characters(Base):
 
 class Characters_Favoritos(Base):
     __tablename__ = 'Characters_favoritos'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
     name = Column(String(250))
-    Characters_Favoritos_id = Column(Integer, ForeignKey('character.id'))
-    person_id = Column(Integer, ForeignKey('characters.id'))
-    person = relationship(User)
+    planet_id = Column(Integer, ForeignKey('characters.id'))
 
-class Characters(Base):
+
+class Planets(Base):
     __tablename__ = 'planets'
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
@@ -62,18 +59,13 @@ class Characters(Base):
     person = relationship(User)
 class PlanetFavorites(Base):
     __tablename__ = 'planet_favorites'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
     name = Column(String(250))
     planet_id = Column(Integer, ForeignKey('planets.id'))
-    person_id = Column(Integer, ForeignKey('user.id'))
-    person = relationship(User)
+    
 
 class Vehicles (Base):
     __tablename__ = 'vehicles'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
     name = Column(String(250))
     model = Column(String(250))
@@ -91,13 +83,9 @@ class Vehicles (Base):
 
 class VehicleFavorites(Base):
     __tablename__ = 'vehicle_favorites'
-        # Here we define columns for the table address.
-        # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
     name = Column(String(250))
     vehicle_id = Column(Integer, ForeignKey('vehicles.id'))
-    person_id = Column(Integer, ForeignKey('user.id'))
-    person = relationship(User)
 
 
     def to_dict(self):
